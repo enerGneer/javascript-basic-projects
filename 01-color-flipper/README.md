@@ -1,5 +1,7 @@
 # Color Flipper
 
+## Check Point
+
 ### Get Random Number
 
 ```js
