@@ -1,6 +1,6 @@
-# Vanilla JS Projects
+# JS Projects
 
-### [Free Camp Course](https://www.youtube.com/watch?v=3PHXvlpOkf4)
+## [freeCodeCamp.org - Vanilla JavaScript Course](https://www.youtube.com/watch?v=3PHXvlpOkf4)
 
 & Added some by me
 
