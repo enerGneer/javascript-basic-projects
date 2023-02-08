@@ -7,7 +7,7 @@
 1. [Color Flipper](01-color-flipper/)
    - Add RGB
 2. [Counter](02-counter/)
-3. Reviews
+3. [Reviews](03-reviews/)
 4. Navbar
 5. Sidebar
 6. Modal
