@@ -8,7 +8,7 @@
    - Add RGB
 2. [Counter](02-counter/)
 3. [Reviews](03-reviews/)
-4. Navbar
+4. [Navbar](04-navbar/)
 5. Sidebar
 6. Modal
 7. Questions
