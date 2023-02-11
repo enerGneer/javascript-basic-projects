@@ -11,7 +11,7 @@
 4. [Navbar](04-navbar/)
 5. [Sidebar](05-sidebar/)
 6. [Modal](06-modal/)
-7. Questions
+7. [Questions](07-questions/)
 8. Menu
 9. Video
 10. Scroll
