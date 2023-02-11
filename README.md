@@ -9,8 +9,8 @@
 2. [Counter](02-counter/)
 3. [Reviews](03-reviews/)
 4. [Navbar](04-navbar/)
-5. Sidebar
-6. Modal
+5. [Sidebar](05-sidebar/)
+6. [Modal](06-modal/)
 7. Questions
 8. Menu
 9. Video
