@@ -120,6 +120,7 @@ function displayMenuButtons() {
   // 유니크한 카테고리를 얻고 싶으면 reduce를 써준다
   const categories = menu.reduce(
     function (values, item) {
+      // console.log(item); // 각 오브젝트의 item이 뜬다.
       // category에 포함되어있지 않으면 array에 push 한다
       if (!values.includes(item.category)) {
         values.push(item.category);
