@@ -12,8 +12,8 @@
 5. [Sidebar](05-sidebar/)
 6. [Modal](06-modal/)
 7. [Questions](07-questions/)
-8. Menu
-9. Video
+8. [Menu](08-menu/)
+9. [Video](09-video/)
 10. Scroll
 11. Tabs
 12. Countdown Timer
