@@ -16,7 +16,7 @@
 9. [Video](09-video/)
 10. [Scroll](10-scroll/)
 11. [Tabs](11-tabs/)
-12. Countdown Timer
+12. [Countdown Timer](12-countdown-timer/)
 13. Lorem Ipsum
 14. Grocery Bud
 15. Slider
