@@ -32,9 +32,22 @@ function addItem(e) {
   } else if (value && editFlag) {
     console.log("editing");
   } else {
-    console.log("empty value");
+    displayAlert("please enter value", "danger");
   }
 }
+// alert 보여주기
+function displayAlert(text, action) {
+  alert.textContent = "empty value";
+  alert.classList.add(`alert-${action}`);
+
+  // 일정 시간 후 alert 지우기
+  setTimeout(function () {
+    alert.textContent = "";
+    alert.classList.remove(`alert-${action}`);
+  }, 1000);
+  // success랑 danger 두개 있어서 danger 값 보내주고 action으로 보낸 것
+}
+
 // ****** LOCAL STORAGE **********
 
 // ****** SETUP ITEMS **********
