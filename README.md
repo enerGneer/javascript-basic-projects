@@ -19,4 +19,4 @@
 12. [Countdown Timer](12-countdown-timer/)
 13. [Lorem Ipsum](13-lorem-ipsum/)
 14. [Grocery Bud](14-grocery-bud/)
-15. Slider
+15. [Slider](15-slider/)
