@@ -28,7 +28,32 @@ function addItem(e) {
   // console.log(id);
   // 시간을 얻어와서 개별 id로 취급한다
   if (value && !editFlag) {
-    console.log("add item to the list");
+    // console.log("add item to the list");
+    const element = document.createElement("article");
+    // add class
+    element.classList.add("grocery-item");
+    // add id
+    const attr = document.createAttribute("data-id");
+    attr.value = id;
+    element.setAttributeNode(attr);
+    element.innerHTML = `<p class="title">${value}</p>
+            <div class="btn-container">
+              <!-- edit btn -->
+              <button type="button" class="edit-btn">
+                <i class="fas fa-edit"></i>
+              </button>
+              <!-- delete btn -->
+              <button type="button" class="delete-btn">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          `;
+    // append child
+    list.appendChild(element);
+    // display alert
+    displayAlert("item added to the list", "success");
+    //  show container
+    container.classList.add("show-container");
   } else if (value && editFlag) {
     console.log("editing");
   } else {
@@ -37,7 +62,7 @@ function addItem(e) {
 }
 // alert 보여주기
 function displayAlert(text, action) {
-  alert.textContent = "empty value";
+  alert.textContent = text;
   alert.classList.add(`alert-${action}`);
 
   // 일정 시간 후 alert 지우기
