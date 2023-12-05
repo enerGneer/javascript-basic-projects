@@ -54,6 +54,10 @@ function addItem(e) {
     displayAlert("item added to the list", "success");
     //  show container
     container.classList.add("show-container");
+    // add to local storage
+    addToLocalStorage(id, value);
+    // set back to default 입력하고 나면 빈칸으로 돌아가게 하기
+    setBackToDefault();
   } else if (value && editFlag) {
     console.log("editing");
   } else {
@@ -72,7 +76,18 @@ function displayAlert(text, action) {
   }, 1000);
   // success랑 danger 두개 있어서 danger 값 보내주고 action으로 보낸 것
 }
+// set back to default 입력하고 나면 빈칸으로 돌아가게 하기
+function setBackToDefault() {
+  // console.log("set back to default");
+  grocery.value = "";
+  editFlag = false;
+  editID = "";
+  submitBtn.textContent = "submit";
+}
 
 // ****** LOCAL STORAGE **********
+function addToLocalStorage(id, value) {
+  console.log("added to local storage");
+}
 
 // ****** SETUP ITEMS **********
