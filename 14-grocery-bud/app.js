@@ -15,6 +15,8 @@ let editID = "";
 // ****** EVENT LISTENERS **********
 // submit form
 form.addEventListener("submit", addItem);
+// clear items
+clearBtn.addEventListener("click", clearItems);
 
 // ****** FUNCTIONS **********
 function addItem(e) {
@@ -76,6 +78,21 @@ function displayAlert(text, action) {
   }, 1000);
   // success랑 danger 두개 있어서 danger 값 보내주고 action으로 보낸 것
 }
+// clear items
+function clearItems() {
+  const items = document.querySelectorAll(".grocery-item");
+
+  if (items.length > 0) {
+    items.forEach(function (item) {
+      list.removeChild(item);
+    });
+  }
+  container.classList.remove("show-container");
+  displayAlert("empty list", "danger");
+  setBackToDefault();
+  // localStorage.removeItem("list");
+}
+
 // set back to default 입력하고 나면 빈칸으로 돌아가게 하기
 function setBackToDefault() {
   // console.log("set back to default");
