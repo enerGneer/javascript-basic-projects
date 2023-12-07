@@ -50,6 +50,11 @@ function addItem(e) {
               </button>
             </div>
           `;
+    // 아래 Btn 위치 중요! 중간에 innterHTML로 넣어주니까 그 위에 넣으면 반응하지 않음. document에서 찾는 게 아니라 element로 찾는 점도 주의할 것
+    const deleteBtn = element.querySelector(".delete-btn");
+    const editBtn = element.querySelector(".edit-btn");
+    deleteBtn.addEventListener("click", deleteItem);
+    editBtn.addEventListener("click", editItem);
     // append child
     list.appendChild(element);
     // display alert
@@ -93,6 +98,26 @@ function clearItems() {
   // localStorage.removeItem("list");
 }
 
+// delete function
+function deleteItem(e) {
+  // console.log("item deleted");
+  const element = e.currentTarget.parentElement.parentElement;
+  const id = element.dataset.id;
+  list.removeChild(element);
+  if (list.children.length === 0) {
+    container.classList.remove("show-container");
+  }
+  displayAlert("item removed", "danger");
+  setBackToDefault();
+  // remove from local storage
+  // removeFromLocalStorage(id);
+}
+
+// edit function
+function editItem() {
+  console.log("edit item");
+}
+
 // set back to default 입력하고 나면 빈칸으로 돌아가게 하기
 function setBackToDefault() {
   // console.log("set back to default");
@@ -106,5 +131,7 @@ function setBackToDefault() {
 function addToLocalStorage(id, value) {
   console.log("added to local storage");
 }
-
+// function removeFromLocalStorage(id){
+//   console.log("remove")
+// }
 // ****** SETUP ITEMS **********
