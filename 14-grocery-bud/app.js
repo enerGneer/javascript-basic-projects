@@ -11,6 +11,7 @@ const clearBtn = document.querySelector(".clear-btn");
 let editElement;
 let editFlag = false;
 let editID = "";
+// editID를 별도로 지정하는 이유는 2번 edit 버튼 눌러놓고 1번 삭제를 하는 유저가 있을 수도 있기 때문이다
 
 // ****** EVENT LISTENERS **********
 // submit form
@@ -66,7 +67,10 @@ function addItem(e) {
     // set back to default 입력하고 나면 빈칸으로 돌아가게 하기
     setBackToDefault();
   } else if (value && editFlag) {
-    console.log("editing");
+    // console.log("editing");
+    editElement.innerHTML = value;
+    displayAlert("value changed", "success");
+    setBackToDefault();
   } else {
     displayAlert("please enter value", "danger");
   }
@@ -100,7 +104,6 @@ function clearItems() {
 
 // delete function
 function deleteItem(e) {
-  // console.log("item deleted");
   const element = e.currentTarget.parentElement.parentElement;
   const id = element.dataset.id;
   list.removeChild(element);
@@ -108,14 +111,25 @@ function deleteItem(e) {
     container.classList.remove("show-container");
   }
   displayAlert("item removed", "danger");
+  // edit local storage
+  // editLocalStorage(editID, value);
   setBackToDefault();
   // remove from local storage
   // removeFromLocalStorage(id);
 }
 
 // edit function
-function editItem() {
-  console.log("edit item");
+function editItem(e) {
+  // console.log("edit item");
+  const element = e.currentTarget.parentElement.parentElement;
+  // set edit item
+  editElement = e.currentTarget.parentElement.previousElementSibling;
+  // set form value 현재의 값을 value text로 셋팅해준다
+  grocery.value = editElement.innerHTML;
+  editFlag = true;
+  // flag를 true로 설정해서 위의 if문 첫번째 else로 넘어감
+  editID = element.dataset.id;
+  submitBtn.textContent = "edit";
 }
 
 // set back to default 입력하고 나면 빈칸으로 돌아가게 하기
@@ -129,9 +143,12 @@ function setBackToDefault() {
 
 // ****** LOCAL STORAGE **********
 function addToLocalStorage(id, value) {
-  console.log("added to local storage");
+  // console.log("added to local storage");
 }
-// function removeFromLocalStorage(id){
-//   console.log("remove")
-// }
+function removeFromLocalStorage(id) {
+  //   console.log("remove")
+}
+function editLocalStorage(id, value) {
+  //   console.log("edit")
+}
 // ****** SETUP ITEMS **********
