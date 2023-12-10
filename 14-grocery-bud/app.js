@@ -18,15 +18,14 @@ let editID = "";
 form.addEventListener("submit", addItem);
 // clear items
 clearBtn.addEventListener("click", clearItems);
+// display items onload
+window.addEventListener("DOMContentLoaded", setupItems);
 
 // ****** FUNCTIONS **********
+// add item
 function addItem(e) {
   e.preventDefault();
   const value = grocery.value;
-  // if (!value) {
-  //   console.log("value is falsy");
-  // }
-
   const id = new Date().getTime().toString();
   // console.log(id);
   // 시간을 얻어와서 개별 id로 취급한다
@@ -56,6 +55,7 @@ function addItem(e) {
     const editBtn = element.querySelector(".edit-btn");
     deleteBtn.addEventListener("click", deleteItem);
     editBtn.addEventListener("click", editItem);
+
     // append child
     list.appendChild(element);
     // display alert
@@ -66,15 +66,19 @@ function addItem(e) {
     addToLocalStorage(id, value);
     // set back to default 입력하고 나면 빈칸으로 돌아가게 하기
     setBackToDefault();
-  } else if (value && editFlag) {
+  } else if (value !== "" && editFlag) {
     // console.log("editing");
     editElement.innerHTML = value;
     displayAlert("value changed", "success");
+
+    // edit local storage
+    editLocalStorage(editID, value);
     setBackToDefault();
   } else {
     displayAlert("please enter value", "danger");
   }
 }
+
 // alert 보여주기
 function displayAlert(text, action) {
   alert.textContent = text;
@@ -99,26 +103,27 @@ function clearItems() {
   container.classList.remove("show-container");
   displayAlert("empty list", "danger");
   setBackToDefault();
-  // localStorage.removeItem("list");
+  localStorage.removeItem("list");
 }
 
-// delete function
+// delete item function
 function deleteItem(e) {
   const element = e.currentTarget.parentElement.parentElement;
   const id = element.dataset.id;
+
   list.removeChild(element);
+
   if (list.children.length === 0) {
     container.classList.remove("show-container");
   }
   displayAlert("item removed", "danger");
-  // edit local storage
-  // editLocalStorage(editID, value);
+
   setBackToDefault();
   // remove from local storage
-  // removeFromLocalStorage(id);
+  removeFromLocalStorage(id);
 }
 
-// edit function
+// edit item function
 function editItem(e) {
   // console.log("edit item");
   const element = e.currentTarget.parentElement.parentElement;
@@ -129,6 +134,8 @@ function editItem(e) {
   editFlag = true;
   // flag를 true로 설정해서 위의 if문 첫번째 else로 넘어감
   editID = element.dataset.id;
+
+  // submit 버튼 이름을 edit 으로 바꿈
   submitBtn.textContent = "edit";
 }
 
@@ -142,13 +149,81 @@ function setBackToDefault() {
 }
 
 // ****** LOCAL STORAGE **********
+// add to local storage
 function addToLocalStorage(id, value) {
-  // console.log("added to local storage");
+  const grocery = { id, value };
+  let items = getLocalStorage();
+  items.push(grocery);
+  localStorage.setItem("list", JSON.stringify(items));
+  console.log(items);
 }
+
+function getLocalStorage() {
+  return localStorage.getItem("list") ? JSON.parse(localStorage.getItem("list")) : [];
+}
+
 function removeFromLocalStorage(id) {
-  //   console.log("remove")
+  let items = getLocalStorage();
+
+  items = items.filter(function (item) {
+    if (item.id !== id) {
+      return item;
+    }
+  });
+
+  localStorage.setItem("list", JSON.stringify(items));
 }
 function editLocalStorage(id, value) {
-  //   console.log("edit")
+  let items = getLocalStorage();
+
+  items = items.map(function (item) {
+    if (item.id === id) {
+      item.value = value;
+    }
+    return item;
+  });
+  localStorage.setItem("list", JSON.stringify(items));
 }
-// ****** SETUP ITEMS **********
+
+// SETUP LOCALSTORAGE.REMOVEITEM('LIST');
+
+// ****** setup items **********
+
+function setupItems() {
+  let items = getLocalStorage();
+
+  if (items.length > 0) {
+    items.forEach(function (item) {
+      createListItem(item.id, item.value);
+    });
+    container.classList.add("show-container");
+  }
+}
+
+function createListItem(id, value) {
+  const element = document.createElement("article");
+  let attr = document.createAttribute("data-id");
+  attr.value = id;
+  element.setAttributeNode(attr);
+  element.classList.add("grocery-item");
+  element.innerHTML = `<p class="title">${value}</p>
+            <div class="btn-container">
+              <!-- edit btn -->
+              <button type="button" class="edit-btn">
+                <i class="fas fa-edit"></i>
+              </button>
+              <!-- delete btn -->
+              <button type="button" class="delete-btn">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          `;
+  // add event listeners to both buttons;
+  const deleteBtn = element.querySelector(".delete-btn");
+  deleteBtn.addEventListener("click", deleteItem);
+  const editBtn = element.querySelector(".edit-btn");
+  editBtn.addEventListener("click", editItem);
+
+  // append child
+  list.appendChild(element);
+}
