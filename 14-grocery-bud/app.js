@@ -18,7 +18,7 @@ let editID = "";
 form.addEventListener("submit", addItem);
 // clear items
 clearBtn.addEventListener("click", clearItems);
-// display items onload
+// display items onload 페이지 로드 시 호출
 window.addEventListener("DOMContentLoaded", setupItems);
 
 // ****** FUNCTIONS **********
@@ -159,12 +159,16 @@ function addToLocalStorage(id, value) {
 }
 
 function getLocalStorage() {
+  //로컬 스토리지에서 "list" 키에 저장된 값을 가져와서 파싱
   return localStorage.getItem("list") ? JSON.parse(localStorage.getItem("list")) : [];
+  // 만약 "list" 키에 값이 존재하지 않으면 빈 배열을 반환
 }
 
 function removeFromLocalStorage(id) {
   let items = getLocalStorage();
+  // 현재 로컬 스토리지에 저장된 모든 목록을 가져옴
 
+  // filter 메서드를 사용하여 특정 id와 일치하지 않는 아이템들로 이루어진 새로운 배열을 생성
   items = items.filter(function (item) {
     if (item.id !== id) {
       return item;
@@ -172,10 +176,13 @@ function removeFromLocalStorage(id) {
   });
 
   localStorage.setItem("list", JSON.stringify(items));
+  // 새로운 배열을 JSON 형식의 문자열로 변환하고, 이를 로컬 스토리지의 "list" 키에 저장
 }
+
 function editLocalStorage(id, value) {
   let items = getLocalStorage();
 
+  // map 메서드를 사용하여 특정 id와 일치하는 아이템을 찾아 내용을 수정
   items = items.map(function (item) {
     if (item.id === id) {
       item.value = value;
@@ -190,16 +197,21 @@ function editLocalStorage(id, value) {
 // ****** setup items **********
 
 function setupItems() {
+  // 페이지 로드 시에 로컬 스토리지에서 저장된 아이템들을 가져와 목록을 설정
+
   let items = getLocalStorage();
 
   if (items.length > 0) {
+    // 만약 가져온 아이템이 하나 이상 존재한다면, forEach 메서드를 사용하여 각 아이템에 대해 createListItem 함수를 호출 - . 이를 통해 각 아이템이 목록에 추가된다
     items.forEach(function (item) {
       createListItem(item.id, item.value);
     });
     container.classList.add("show-container");
+    // 가져온 아이템이 하나 이상일 때, 목록을 표시하는 컨테이너에 show-container 클래스를 추가하여 화면에 보이도록 설정
   }
 }
 
+// 가져온 아이템이 있다면 createListItem 함수를 호출하여 각각의 아이템을 목록에 추가
 function createListItem(id, value) {
   const element = document.createElement("article");
   let attr = document.createAttribute("data-id");
