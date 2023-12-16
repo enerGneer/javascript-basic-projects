@@ -20,3 +20,5 @@
 13. [Lorem Ipsum](13-lorem-ipsum/)
 14. [Grocery Bud](14-grocery-bud/)
 15. [Slider](15-slider/)
+16. [Counter](16-counter/)
+17. [Gallery](17-gallery/)
