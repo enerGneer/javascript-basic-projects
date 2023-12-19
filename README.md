@@ -22,3 +22,5 @@
 15. [Slider](15-slider/)
 16. [Counter](16-counter/)
 17. [Gallery](17-gallery/)
+18. [Dark mode](18-dark-mode/)
+19. [Filters](19-filters/)
