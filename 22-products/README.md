@@ -261,3 +261,64 @@ person.sayHi(); // Hi Lee
 - https://velog.io/@padoling/JavaScript-%ED%99%94%EC%82%B4%ED%91%9C-%ED%95%A8%EC%88%98%EC%99%80-this-%EB%B0%94%EC%9D%B8%EB%94%A9
 - https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Functions/Arrow_functions
 - https://poiemaweb.com/es6-arrow-function
+
+#### 콘텍스트 바인딩
+
+- 함수 호출과 실제 함수를 연결하는 과정
+- JavaScript에서 함수가 실행될 때 this 키워드가 어떤 값을 참조하는지를 결정하는 것
+- 함수가 호출될 때 this는 실행 컨텍스트에 따라 동적으로 결정되며, 이를 콘텍스트 바인딩이라고 합니다.
+
+전역 공간의 this : 전역 객체
+메소드 호출 시 메소드 내부의 this : 해당 메소드를 호출한 객체
+함수 호출 시 함수 내부의 this : 지정되지 않음(??)
+
+> 1번과 2번은 그럴듯한데... 3번이 좀 이상한 것 같습니다. 함수를 호출했을 때 그 함수 내부의 this는 지정되지 않습니다. 그리고 this가 지정되지 않은 경우, this는 자동으로 전역 객체를 바라보기 때문에 함수를 호출하면 함수 내부에서의 this는 전역 객체가 된다고 정리할 수 있습니다. 음... 킹받지만 아쉽게도 자바스크립트 개발자 중 한 명인 더글라스 크락포드조차 이 점은 설계상의 오류라고 지적했습니다.
+
+그러니까 정리하자면
+
+1. 전역에서 호출될 때 this 전역 객체 window 또는 global 을 참조
+2. 객체의 메서드로 호출될 때 그 메서드를 호출한 객체를 참조
+3. 콜백 함수 내에서의 this 는 전역 객체
+4. 화살표 함수 내에서의 this는 함수가 정의된 시점에서 상위 스코프의 this 값을 가져옴
+
+```js
+// 화살표 함수
+const arrowFunction = () => {
+  console.log(this);
+};
+
+// 일반 함수
+function regularFunction() {
+  console.log(this);
+}
+
+const obj = {
+  arrow: arrowFunction,
+  regular: regularFunction,
+};
+
+obj.arrow(); // 화살표 함수 내의 this는 obj 객체를 가리킴
+obj.regular(); // 일반 함수 내의 this는 obj 객체를 가리킴
+
+// 전역에서의 호출
+arrowFunction(); // 화살표 함수 내의 this는 전역 객체(window 또는 global)를 가리킴
+regularFunction(); // 일반 함수 내의 this는 전역 객체(window 또는 global)를 가리킴
+```
+
+- https://hackinghack.tistory.com/123
+- https://velog.io/@edie_ko/js-this
+- https://velog.io/@padoling/JavaScript-%ED%99%94%EC%82%B4%ED%91%9C-%ED%95%A8%EC%88%98%EC%99%80-this-%EB%B0%94%EC%9D%B8%EB%94%A9
+
+### 객체 분해 destructuring
+
+```js
+const product = {
+  id: 123,
+  name: "Example Product",
+  price: 19.99,
+};
+
+const { id } = product; // 객체 분해. id 속성 가져와서 새로운 변수 id에 할당
+
+console.log(id); // 출력: 123
+```
