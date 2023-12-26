@@ -322,3 +322,19 @@ const { id } = product; // 객체 분해. id 속성 가져와서 새로운 변�
 
 console.log(id); // 출력: 123
 ```
+
+### 쿼리 문자열
+
+`console.log(window.location.search);`
+
+- 현재 페이지 URL의 쿼리 문자열을 콘솔에 출력
+- window.location.search는 현재 페이지의 URL에서 쿼리 문자열을 나타냄
+- 예를 들어, product.html?id=123&name=john&age=25와 같은 URL에서 ?id=123&name=john&age=25가 쿼리 문자열.
+
+### URLSearchParams
+
+Date, Math 같은 JS의 내장 객체. (date 역시 new Date()로 쓸 수 있다.)
+
+URL의 쿼리 문자열에서 키와 값의 쌍을 추출하거나, 쿼리 문자열에 키와 값의 쌍을 추가하거나, 특정 키의 값을 가져오거나 설정하거나, 특정 키를 삭제하는 등의 작업을 수행할 수 있다.
+
+- https://developer.mozilla.org/ko/docs/Web/API/URLSearchParams
