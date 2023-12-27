@@ -157,3 +157,21 @@ function (item) {
   item.classList.remove("active");
 }
 ```
+
+async 부분
+
+```js
+// 기존의 화살표 함수
+const getUser = async () => {
+  // 함수 내용
+};
+
+// 일반 함수로 변경
+async function getUser() {
+  // 함수 내용
+}
+```
+
+화살표랑 일반 함수의 분기점은 역시 this다!
+
+일반적으로 간결한 작업은 화살표, 복잡한 동작이 필요하면 일반 함수
