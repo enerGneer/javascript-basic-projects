@@ -59,8 +59,7 @@ Global Styles
   box-sizing: border-box;
 }
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   background: var(--clr-white);
   color: var(--clr-grey-1);
   line-height: 1.5;
@@ -164,7 +163,7 @@ Stripe Styles
   display: none;
 }
 .hero::before {
-  content: '';
+  content: "";
   position: absolute;
   width: 100%;
   height: 65%;
@@ -370,7 +369,7 @@ Stripe Styles
   border-radius: var(--radius);
 }
 .submenu::before {
-  content: '';
+  content: "";
   display: block;
   width: 0;
   height: 0;
