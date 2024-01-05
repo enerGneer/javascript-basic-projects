@@ -27,3 +27,10 @@
 20. [Filters](20-filters/)
 21. [Dad jokes](21-dad-jokes/)
 22. [Products](22-products/)
+23. [Random User](23-random-user/)
+24. [Cocktails](24-cocktails/)
+25. [Slider](25-slider/)
+26. [Stripe Submenus](26-stripe-submenus/)
+27. [Pagination](27-pagination)
+28. [Wikipedia](28-wikipedia)
+29.
