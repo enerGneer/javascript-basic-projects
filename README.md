@@ -33,4 +33,4 @@
 26. [Stripe Submenus](26-stripe-submenus/)
 27. [Pagination](27-pagination)
 28. [Wikipedia](28-wikipedia)
-29.
+29. [Comfy Store](29-comfy-store/)
